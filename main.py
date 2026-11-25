@@ -11,7 +11,8 @@ from pathlib import Path
 LINE = "Day 3 of you saying 'we need to talk' to the takeout menu. I'm right here. I have shelves. I have feelings. I also have your yogurt from October."
 
 
-def main() -> None:
+def write_entry() -> Path:
+    """Validate the line and write it to the entry path."""
     if not 1 <= len(LINE) <= 200:
         raise ValueError(f"entry must be 1-200 characters, got {len(LINE)}")
     target = os.environ.get("ENTRY_OUTPUT_PATH", "/output/entry.txt")
@@ -22,6 +23,11 @@ def main() -> None:
         path = Path("./output/entry.txt")
         path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(LINE, encoding="utf-8")
+    return path
+
+
+def main() -> None:
+    write_entry()
 
 
 if __name__ == "__main__":
