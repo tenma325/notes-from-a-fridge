@@ -12,6 +12,8 @@ LINE = "Day 3 of you saying 'we need to talk' to the takeout menu. I'm right her
 
 
 def main() -> None:
+    if not 1 <= len(LINE) <= 200:
+        raise ValueError(f"entry must be 1-200 characters, got {len(LINE)}")
     target = os.environ.get("ENTRY_OUTPUT_PATH", "/output/entry.txt")
     path = Path(target)
     try:
